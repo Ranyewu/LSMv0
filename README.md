@@ -2,7 +2,12 @@
 This code is based on Matlab R2019a
 
 Input: .tif picture with __same size__ (Obtain by Arcgis software)  
-and put them in the __same path__ of this codess
+and put them in the __same path__ of these code<br>
+
+Due to the size of input files, the tif picture data is not available.
+If necessary, the author will provide other ways to download
+
+
 
 ## Prepare Material: 
 a0.tif (Represent the have landslides or not in target area)<br>
