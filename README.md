@@ -7,8 +7,6 @@ and put them in the __same path__ of these code<br>
 Due to the size of input files, the tif picture data is not available.
 If necessary, the author will provide other ways to download
 
-
-
 ## Prepare Material: 
 a0.tif (Represent the have landslides or not in target area)<br>
 a1.tif (lithology class in traget area)<br>
