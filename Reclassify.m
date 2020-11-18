@@ -49,4 +49,27 @@ save DatasetReclassify.mat anninRe trainRe1 annin2Re trainRe2
 % Save the reclassify training dataset
 clear all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [Newannin] = FrChange(annin,Eddivide1,Calindex)
+Newannin = annin;
+for i = 1:size(annin,1)
+   for j = 1:size(Calindex,2)
+        for k = 1 :size(Eddivide1,2)-1
+            if  ((annin(i,Calindex(j))>=Eddivide1(j,k))&&...
+                  annin(i,Calindex(j))<=Eddivide1(j,k+1))
+               Newannin(i,Calindex(j))= k;
+            end
+        end
+   end
+   
+   
+   if i == 2500000
+       disp('25% finished')
+   elseif i ==5000000
+       disp('50% finished')
+   elseif i ==7500000
+       disp('75% finished')
+   end
+   
+end
 
+end
