@@ -45,3 +45,32 @@ output=trainsample(:,1);
 clear A
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function CovertRocToExcel(Roc,AUC,x,net,N,MaxEpoch,Ytest)
+
+RocT = array2table(Roc,...
+    'VariableNames',{'i','CM1Dec1','CM1Dec2','CM1Dec3','CM1Dec4','AccPPVDecls1','AccALLDecls1',...
+                         'CM1Per1','CM1Per2','CM1Per3','CM1Per4','AccPPVPerls1','AccALLPerls1',...
+                         'CM2Dec1','CM2Dec2','CM2Dec3','CM2Dec4','AccPPVDecls2','AccALLDecls2',...
+                         'CM2Per1','CM2Per2','CM2Per3','CM2Per4','AccPPVPerls2','AccALLPerls2'})
+AucT = array2table(AUC,...
+    'VariableNames',{'AUCDecinls1','AUCPerinls1','AUCDecinls2','AUCPerinls2'})
+                     
+filename = [pwd,'\ResultRoc.xlsx'];
+currentFolder = pwd
+
+
+
+Modelname=['AnnModel',num2str(x)];
+Modelname2=[currentFolder,'\PRCResult\Model',num2str(x),'.mat'];
+save(Modelname2,'net','Roc','AUC')
+Modelname3=[currentFolder,'\LSIResult\Model',num2str(x),'.mat'];
+save(Modelname3,'Ytest')
+
+Result=[x,N,MaxEpoch,AUC];
+sheetname=['A',num2str(x+1)];
+writematrix(Result,filename,'Sheet','Modelname','Range',sheetname)
+writetable(AucT,filename,'Sheet',Modelname,'Range','A1')
+writetable(RocT,filename,'Sheet',Modelname,'Range','A3')
+
+
+end
