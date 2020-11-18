@@ -37,8 +37,12 @@ Flowchart of code is shown below<br>
   8. RecoverModelLSM<br>
 
 ## Result of code
-__LSMv0/AUCACCsenF/Result.xlsx__<br>
+1. __LSMv0/AUCACCsenF/Result.xlsx__<br>
 The AUC	ACC Sensitivity	and F-score values of all model<br>
-__LSMv0/ResultRoc.xlsx__<br>
+2. __LSMv0/ResultRoc.xlsx__<br>
 The AUC and ROC of ANN models and MLP models<br>
+3. __LSMv0/PictureResult/__<br>
+Picture results of ANN models and MLP models<br>
+4. __LSMv0/InfoGainResult/InfoGainResult.xlsx__<br>
+Information gain results<br>
 
