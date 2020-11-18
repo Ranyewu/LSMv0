@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clear all
+currentFolder = pwd
+filename =[currentFolder,'\a0.tif'];
+importfile(filename);
+sizes = size(a0);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+for i = 0 : 13
+        filename = [currentFolder,'\a',num2str(i),'.tif'];
+        importfile(filename);        
+        expression = ['a',num2str(i),'=double(','a',num2str(i),');'];
+        eval(expression);        
+        expression = ['a',num2str(i),'=a',num2str(i),'(:);'];
+        eval(expression);
+end
+
+for i = 0 : 13
+    if i == 0
+       expression = ['b=[a',num2str(i),'];,clear a',num2str(i)];
+       eval(expression);
+    elseif i>0
+       expression = ['b=[b,a',num2str(i),'];,clear a',num2str(i)];
+       eval(expression);
+    end
+end
+
+clear filename i expression currentFolder
+
+count=zeros(1,2);
+w = size(b,2);
+
+for i = 1:1:size(b,1)
+n = i;
+if (b(n,1)==0&&max(b(n,2:w))~=65535)
+    count(1,1)=count(1,1)+1;
+elseif (b(n,1)==1&&max(b(n,2:w))~=65535)  
+    count(1,2)=count(1,2)+1;
+end
+end
+sum(count)
+train=zeros(sum(count),w);
+index=zeros(sum(count),1);
+
+a = 0;
+
+for i = 1:1:size(b,1)
+n = i;
+if (b(n,1)==0&&max(b(n,2:w))~=65535)
+a=a+1;
+train(a,:)=b(n,:);
+index(a,1)=n;
+elseif (b(n,1)==1&&max(b(n,2:w))~=65535)
+a=a+1;
+train(a,:)=b(n,:);
+index(a,1)=n;
+end
+
+end
+
+clear n w i a j temp d2 ans b
+
+annin=train(:,2:10);
+annout=train(:,1);
+annin2=train(:,2:13);
+annout2=train(:,14);
+train1=[annout,annin];
+train2=[annout2,annin2];
+count2=counts(train2);
+clear train
+save basic.mat
+clear all
