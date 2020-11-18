@@ -38,6 +38,7 @@ Flowchart of code is shown below<br>
 
 ## Result of code
 __LSMv0/AUCACCsenF/Result.xlsx__<br>
-The AUC	ACC Sensitivity	and F-score values of all model
-__LSMv0/Result.xlsx__<br>
+The AUC	ACC Sensitivity	and F-score values of all model<br>
+__LSMv0/ResultRoc.xlsx__<br>
+The AUC and ROC of ANN models and MLP models<br>
 
