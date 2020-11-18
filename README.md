@@ -39,7 +39,7 @@ Flowchart of code is shown below<br>
 	7. PRCpicture<br>
   8. RecoverModelLSM<br>
 
-## Result of code
+## Results of code
 1. __LSMv0/AUCACCsenF/Result.xlsx__<br>
 The AUC	ACC Sensitivity	and F-score values of all model<br>
 2. __LSMv0/ResultRoc.xlsx__<br>
