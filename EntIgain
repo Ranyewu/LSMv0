@@ -1,0 +1,52 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%This code is used for save the result of Information gain
+Path=[pwd,'\InfoGainResult\InfoGain.mat'];
+Xlspath=[pwd,'\InfoGainResult\InfoGainResult.xlsx'];
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For Histroical Landslide 
+Inforgain=zeros(size(anninRe,2),1);
+Ent1=zeros(size(anninRe,2),1);
+for i = 2:10
+ [Ent1(i-1),Inforgain(i-1)] = EntDandInfoGain(count,trainRe1,i);
+  disp(i) 
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For Earhquake-induced Landslide 
+Inforgain2=zeros(size(annin2Re,2),1);
+Ent2=zeros(size(annin2Re,2),1);
+for i = 2:13
+ [Ent2(i-1),Inforgain2(i-1)] = EntDandInfoGain(count2,trainRe2,i);
+  disp(i) 
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%write into mat file
+save(Path,'Inforgain','Inforgain2','Ent1','Ent2');
+%write into excel file
+writematrix(Ent1(1),Xlspath,'Sheet','Sheet1','Range','B2');
+writematrix(Ent2(1),Xlspath,'Sheet','Sheet1','Range','C2');
+writematrix(Inforgain,Xlspath,'Sheet','Sheet1','Range','B4');
+writematrix(Inforgain2,Xlspath,'Sheet','Sheet1','Range','C4');
+clear Path Xlspath Inforgain Inforgain2 Ent1 Ent2 i
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function [Ent,Inforgain] = EntDandInfoGain(count,trainRe1,i)
+    p1=count(1)/sum(count);
+    p2=count(2)/sum(count);
+    Ent=-(p1*log2(p1)+p2*log2(p2));
+    max1=max(trainRe1);
+    min1=min(trainRe1);
+    Xedges=linspace(min1(i)-0.5,max1(i)+0.5,max1(i)-min1(i)+2);
+    Xlenged=linspace(min1(i),max1(i),max1(i)-min1(i)+1);
+    [N1,~] = histcounts(trainRe1(:,i),Xedges);
+    [trainsample,~,~,~]=ReduceSample(trainRe1,count(1,1),0);
+    [N2,~] = histcounts(trainsample(:,i),Xedges);
+    N3=N1-N2;
+    Pclass=N1./sum(N1);
+    Pls=N3./N1;
+    Pnls=N2./N1;
+    Pls2=Pls.*log2(Pls);
+    Pnls2=Pnls.*log2(Pnls);
+    Pls2(isnan(Pls2))=0;
+    Pnls2(isnan(Pnls2))=0;
+    Enti=-(Pls2+Pnls2);
+    Inforgain=Ent-(sum(Enti.*Pclass));
+end
