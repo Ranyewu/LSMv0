@@ -2,7 +2,7 @@
 This code is based on Matlab R2019a
 
 Input: .tif picture with __same size__ (Obtain by Arcgis software)  
-and put them in the __same path__ of the code
+and put them in the __same path__ of this codess
 
 
 
