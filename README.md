@@ -4,7 +4,7 @@ This code is based on Matlab R2019a
 Input: .tif picture with __same size__ (Obtain by Arcgis software)  
 and put them in the __same path__ of this codess
 
-example: <br>
+## Prepare Material: 
 a0.tif (Represent the have landslides or not in target area)<br>
 a1.tif (lithology class in traget area)<br>
 a2.tif (Soil)<br>
@@ -20,7 +20,7 @@ a11.tif (PGA 3d synthesis)<br>
 a12.tif (Japan seismic intensity)<br>
 a13.tif (Earthquake-induced earthquake)<br>
 
-
+## Code flowchart
 All code has already packed in __MainCode__<br>
 Flowchart of code is shown below<br>
 	1. LoadPicture.m  <br>
