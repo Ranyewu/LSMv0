@@ -21,7 +21,7 @@ a12.tif (Japan seismic intensity)<br>
 a13.tif (Earthquake-induced earthquake)<br>
 
 
-All code has already packed in __MainCode__
+All code has already packed in __MainCode__<br>
 Flowchart of code is shown below<br>
 	1. LoadPicture.m  <br>
 	2. Reclassify.m <br>
