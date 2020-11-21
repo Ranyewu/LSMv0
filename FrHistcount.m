@@ -1,4 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+load('basic.mat')
+load('DatasetReclassify.mat')
 %This code is used for out put Frequency ratio figures.
 text0=['LIM/ELIM'];
 text1=['Lithology class'];
@@ -124,3 +126,24 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear text0 text1 text2 text3 text4 text5 text6 text7 text8 text9 text10 text11 text12 text path
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+function [random,index1] = Randomselect(matrixs,numbers)
+random = zeros(numbers,size(matrixs,2));
+index1 = randperm(size(matrixs,1),numbers)';
+for i = 1 : numbers
+    random(i,:)=matrixs(index1(i,1),:);
+end
+end
+
+
+function [trainsample,indexs,input,output]=ReduceSample(train,a,b)
+%reduce the number of samples
+A = arrayfun(@(x) train(train(:,1) == x, :), unique(train(:,1)), 'uniformoutput', false);
+[nls,index1]=Randomselect(A{1},a);
+[ls,index2]=Randomselect(A{2},b);
+trainsample=[nls;ls];
+indexs=[index1;index2];
+input=trainsample(:,2:end);
+output=trainsample(:,1);
+clear A
+end
