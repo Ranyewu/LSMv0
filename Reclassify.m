@@ -4,6 +4,9 @@ load('basic.mat') %Load the dataset
 % Feature discretization For Histroical Landslide 
 % (c) Fault, (d) Slope, (e) Aspect, (f) Curvature, (g) Road, (h) River
 % are continuous variables
+% annin------input data
+% Eddivide1 --------divided method
+% 3 ------- column index eg.: 3 means (c) Fault
 Eddivide1=[0,1000,2000,3000,4000,5000,6000,15000];
 [anninRe] = FrChange(annin,Eddivide1,3);
 Eddivide1=[0,5,10,15,20,25,30,35,40,45,50,55,60,90];
